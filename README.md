@@ -1,4 +1,9 @@
 # Project 1
+## Dependencies
+We use Python 3.13.7 with Matplotlib 3.10.6 and Numpy 2.3.3.
+
+To install dependencies use `pip install -r requirements.txt`.
+
 ## Modeling Bobcat Populations
 
 We model bobcat populations under a variety of conditions and assumptions. Three different annual growth rates depending on local environmental conditions: `r = 0.01676`, `r = 0.00549`, and `r = -0.04500`.
