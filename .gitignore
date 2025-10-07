@@ -1,1 +1,6 @@
 venv/
+project1.aux
+project1.fdb_latexmk
+project1.fls
+project1.log
+project1.synctex.gz
