@@ -29,10 +29,9 @@ for _ in range(LONG_TERM ):
         fa_pop[i].append(fa_pop[i][-1] * (r + 1) - fixed_amount[i])
         fp_pop[i].append(fp_pop[i][-1] * (r + 1 - fixed_percent[i]))
 
-def config_plt(title, xlbl, ylbl):
-    plt.title(title, fontsize=16)
-    plt.xlabel(xlbl, fontsize=14)
-    plt.ylabel(ylbl, fontsize=14, rotation='horizontal', labelpad=15)
+def config_plt():
+    plt.xlabel("t", fontsize=14)
+    plt.ylabel("P(t)", fontsize=14, rotation='horizontal', labelpad=15)
     plt.legend(fontsize=14)
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
@@ -42,14 +41,14 @@ def config_plt(title, xlbl, ylbl):
 t = np.arange(SHORT_TERM + 1)
 for i, pop in enumerate(fa_pop):
     plt.plot(t, pop[:SHORT_TERM + 1], label = f"$f = {fixed_amount[i]}$")
-config_plt("Bobcat Population w/\nFixed Hunting over 30 Years", "t", "P(t)")
+config_plt()
 plt.savefig('./hunting/fixed_short_term.png', dpi=300)
 plt.close()
 
 t = np.arange(LONG_TERM + 1)
 for i, pop in enumerate(fa_pop):
     plt.plot(t, pop, label = f"$f = {fixed_amount[i]}$")
-config_plt("Bobcat Population w/\nFixed Hunting over 70 Years", "t", "P(t)")
+config_plt()
 plt.savefig('./hunting/fixed_long_term.png', dpi=300)
 plt.close()
 
@@ -57,13 +56,13 @@ plt.close()
 t = np.arange(SHORT_TERM + 1)
 for i, pop in enumerate(fp_pop):
     plt.plot(t, pop[:SHORT_TERM + 1], label = f"$f = {fixed_percent[i]}$")
-config_plt("Bobcat Population w/\nPercentage Hunting over 30 Years", "t", "P(t)")
+config_plt()
 plt.savefig('./hunting/percentage_short_term.png', dpi=300)
 plt.close()
 
 t = np.arange(LONG_TERM + 1)
 for i, pop in enumerate(fp_pop):
     plt.plot(t, pop, label = f"$f = {fixed_percent[i]}$")
-config_plt("Bobcat Population w/\nPercentage Hunting over 70 Years", "t", "P(t)")
+config_plt()
 plt.savefig('./hunting/percentage_long_term.png')
 plt.close()
