@@ -23,6 +23,7 @@ In this paper we discuss how we can model bobcat populations under a variety of 
     \item The growth rate of the population is always constant, i.e. the growth rate in the first year will be the same as the hundredth year, and thousandth year, and so on.
     \item We assume, in most cases, that fractional populations are valid. While one half of a bobcat does not usually make sense, for the sake simplicity we will allow it to be the case unless we explicitly say we use integer based populations.
     \item All births and deaths happen at the end of a year/ start of a new year.
+    \item All time increments, denoted $t$ throughout the paper, are integers greater than or equal to zero.
 \end{enumerate}
 
 This paper will be divided into three main topics. First, the analysis of the basic model under three different growth rates in both the long and short term. Second, we will how the model changes when hunting is introduced and devising a strategy to meet a stable population with hunting. Third and last, we will analyze how the model changes when external introduction is used along with devising a strategy to meet a stable population with introduction.
@@ -75,7 +76,43 @@ For $r = 0.01676$ (in blue) and $r = 0.00549$ (in orange) we see similar behavio
 This model appears to only have one point of stability, when $P(t) = 0$, and we only approach this stable point with negative $r$ values. We will discuss different methods of identifying stable, or fixed, points later in this paper.
 
 \section{Hunting}
+In the best of times ($r = 0.01676$) we would like to analyze how different forms of hunting can impact the population. We must modify \autoref{eq:basic-recursive-exponential} to account for both fixed amount hunting and fixed percentage hunting. For fixed amount hunting we will have some amount of bobcats $a$ which get hunted each year, seen in \autoref{eq:hunting-amount}. In this case $a$ will be negative, as we choose to allow this formula to work for both hunting bobcats and adding bobcats. The fixed percentage hunting works similarly, but uses a percentage $h$ of the population to be hunted, as seen in \autoref{eq:hunting-percentage}. Again $h$ will be negative in the case of hunting, but positive in the case of introduction.
+
+\begin{equation}\label{eq:hunting-amount}
+    P(t) = (r+1)P(t-1) + a
+\end{equation}
+
+\begin{align}\label{eq:hunting-percentage}
+    P(t) &= (r+1)P(t-1) + hP(t-1) \nonumber \\
+    P(t) &= (r+h+1)P(t-1)
+\end{align}
+
+Finding the closed form for each of these can allow us to better understand their behavior. The closed form of \autoref{eq:hunting-percentage} can be found the same as before, as the only thing that has changed is $(r+1)$ has become $(r+h+1)$, so our closed form will be \autoref{eq:hunting-percentage-closed}. \autoref{eq:hunting-amount} is slightly more complicated as it includes a new term, we can attempt to solve it in the same manner.
+
+\begin{equation}\label{eq:hunting-percentage-closed}
+    P(t) = (r+h+1)^tP(0)
+\end{equation}
+
+\begin{align*}
+    P(t) &= (r+1)P(t-1) + a & P(t-1) = (r+1)P(t-2) + a \\
+    P(t) &= (r+1)((r+1)P(t-2) + a) + a & P(t-2) = (r+1)P(t-3) + a \\
+    P(t) &= (r+1)((r+1)((r+1)P(t-3) + a) + a) + a & P(t-3) = (r+1)P(t-4) + a \\
+    &\phantom{x}\vdots \\
+    P(t) &= (r+1)^tP(0) + \sum_{k=0}^{t-1}(r+1)^ka
+\end{align*}
+
+In this case we are left with the expected exponential term from \autoref{eq:basic-recursive-exponential}, but we also have a summation term. This term can be easily simplified using the geometric series formula, seen in \autoref{eq:geometric-series-formula}. Giving us a final closed from of \autoref{eq:hunting-amount-closed}.
+
+\begin{equation}\label{eq:geometric-series-formula}
+    \sum_{k=0}^{n-1}cx^k=\frac{c(x^n-1)}{x-1}
+\end{equation}
+
+\begin{equation}\label{eq:hunting-amount-closed}
+    P(t) = (r+1)^tP(0) + a\frac{(r+1)^t-1}{r}
+\end{equation}
+
+% TODO: Finish this section
 
 \section{Population Introduction}
-
+    
 \end{document}
