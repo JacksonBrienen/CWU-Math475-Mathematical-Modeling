@@ -20,25 +20,27 @@ for _ in range(LONG_TERM ):
     for i in range(3):
         p[i].append(p[i][-1] * (r[i] + 1))
 
+def config_plt(title, xlbl, ylbl):
+    plt.title(title, fontsize=16)
+    plt.xlabel(xlbl, fontsize=14)
+    plt.ylabel(ylbl, fontsize=14, rotation='horizontal', labelpad=15)
+    plt.legend(fontsize=14)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.tight_layout()
 
 # Plot the collected data for short term
 t = np.arange(SHORT_TERM + 1)
 for i, pop in enumerate(p):
     plt.plot(t, pop[:SHORT_TERM + 1], label = f"$r = {r[i]}$")
-plt.title("Bobcat Population over 30 Years")
-plt.xlabel("t")
-plt.ylabel("P(t)")
-plt.legend()
-plt.savefig('./basic/short_term.png')
+config_plt("Bobcat Population over 30 Years", "t", "P(t)")
+plt.savefig('./basic/short_term.png', dpi=300)
 plt.close()
 
 # Plot the collected data for long term
 t = np.arange(LONG_TERM + 1)
 for i, pop in enumerate(p):
     plt.plot(t, pop, label = f"$r = {r[i]}$")
-plt.title("Bobcat Population over 70 Years")
-plt.xlabel("t")
-plt.ylabel("P(t)")
-plt.legend()
-plt.savefig('./basic/long_term.png')
+config_plt("Bobcat Population over 70 Years", "t", "P(t)")
+plt.savefig('./basic/long_term.png', dpi=300)
 plt.close()
