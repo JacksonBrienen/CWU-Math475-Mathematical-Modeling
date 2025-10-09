@@ -20,18 +20,18 @@
 \maketitle
 
 \section{Introduction}
-In this paper we discuss how we can model bobcat populations under a variety of environmental conditions and external manipulations (hunting and introduction). While there are a variety of modeling techniques that can be used for populations we focus on using a basic exponential model. With this come a variety of assumptions:
+In this paper we discuss how we can model bobcat populations under a variety of environmental conditions and external manipulations (hunting and introduction). While there are a variety of modeling techniques that can be used for populations, we focus on using a basic exponential model. With this comes a variety of assumptions:
 
 \begin{enumerate}
     \item There is no carrying capacity/ maximum population.
     \item The growth rate of the population is always constant, i.e. the growth rate in the first year will be the same as the hundredth year, and thousandth year, and so on.
-    \item We assume, in most cases, that fractional populations are valid. While one half of a bobcat does not usually make sense, for the sake simplicity we will allow it to be the case unless we explicitly say we use integer based populations.
+    \item We assume, in most cases, that fractional populations are valid. While one half of a bobcat does not usually make sense, for the sake of simplicity we will allow it to be the case unless we explicitly say we use integer-based populations.
     \item All births and deaths happen at the end of a year/ start of a new year.
     \item All time increments, denoted $t$ throughout the paper, are integers greater than or equal to zero.
     \item Any $P(0)$, i.e. initial population will be greater than zero, throughout the paper we usually use $P(0)=100$.
 \end{enumerate}
 
-This paper will be divided into three main topics. First, the analysis of the basic model under three different growth rates in both the long and short term. Second, we will how the model changes when hunting is introduced and devising a strategy to meet a stable population with hunting. Third and last, we will analyze how the model changes when external introduction is used along with devising a strategy to meet a stable population with introduction.
+This paper will be divided into three main topics. First, the analysis of the basic model under three different growth rates in both the long and short term. Second, we will analyze how the model changes when hunting is introduced and devise a strategy to meet a stable population with hunting. Third and last, we will analyze how the model changes when external introduction is used along with devise a strategy to meet a stable population with introduction.
 
 \section{Methods}
 When analyzing the different models in this paper we use a variety of mathematical techniques and definitions to predict and describe their behavior. While understanding the exact underlying mathematics can be helpful, understanding general terminology and theory is more important for reading this paper.
@@ -43,7 +43,7 @@ This paper exclusively discusses exponential functions. An exponential function 
     \item Exponential Decay: $f(x)$ decreases towards 0.
     \item Constant: $f(x)$ does not change.
 \end{itemize}
-When analyzing exponential functions we may want to know which category they fall into. While the derivative of $f(x)$ could be used, sometimes this derivative can be unpleasant. Since this paper focuses primarily on discrete recurrence which are exponential in their closed form, it is very easy to calculate the rate of change at a single point. We can then you the sign of this rate of change to determine its behavior (growth, decay, constant). To do this we must know that the sign of the rate of change of the function does not change. For this we can rely on the following theorem.
+When analyzing exponential functions we may want to know which category they fall into. While the derivative of $f(x)$ could be used, sometimes this derivative can be unpleasant. Since this paper focuses primarily on discrete recurrence which are exponential in their closed form, it is very easy to calculate the rate of change at a single point. We can then use the sign of this rate of change to determine its behavior (growth, decay, constant). To do this we must know that the sign of the rate of change of the function does not change. For this we can rely on the following theorem.
 
 \begin{theorem}\label{thm:1}\normalfont
     Let $f(x)=a \cdot b^{cx+d} + e$ where $a, b, c, d, e \in \mathbb{R}$, the form for any defined exponential function. If $f(x)$ is defined $\forall x \ge 0$ the derivative $f'(x)$ will have the same sign for any $x \ge 0$.
@@ -112,12 +112,12 @@ Previously we mentioned we were using an exponential model, yet this recursive f
 
 In this closed form we can see clearly that this is in fact an exponential model. We can predict how the model will behave by using \cref{thm:1}. All we need to calculate is the change in population from one year to the next, we will use time at $0$ and $1$.
 \begin{align*}
-    P(1) &= (r+1)P(0) & \text{to get the change we simply find } P'(1)=P(1)-P(0)\\
-    P'(1) &= (r+1)P(0)-P(0) \\
-    P'(1) &= rP(0) + P(0) - P(0) \\
-    P'(1) &= rP(0)
+    P(1) &= (r+1)P(0) & \text{to get the change we simply find } \Delta P(1)=P(1)-P(0)\\
+    \Delta P(1) &= (r+1)P(0)-P(0) \\
+    \Delta P(1) &= rP(0) + P(0) - P(0) \\
+    \Delta P(1) &= rP(0)
 \end{align*}
-Know that we know our change, we need to find the sign of this. As stated in the assumptions we know $P(0)>0$, so this is a positive constant, thus $\sgn(P'(1)) = \sgn(r)$, and by \cref{thm:1} we know our sign never changes, so $\sgn(P'(n))=\sgn(r)$. So we know that if $r > 0$ we will experience exponential growth, and if $r < 0$ we will experience exponential decay.
+Now that we know our change, we need to find the sign of this. As stated in the assumptions we know $P(0)>0$, so this is a positive constant, thus $\sgn(\Delta P(1)) = \sgn(r)$, and by \cref{thm:1} we know our sign never changes, so $\sgn(P'(n))=\sgn(r)$. So we know that if $r > 0$ we will experience exponential growth, and if $r < 0$ we will experience exponential decay.
 
 
 There are three growth rates based on environmental conditions, $1.676\%$ in the best case, $0.549\%$ in moderate cases, and $-4.5\%$ in the worst case, we will look at these when the starting population is $100$.
@@ -140,9 +140,9 @@ There are three growth rates based on environmental conditions, $1.676\%$ in the
     \label{fig:1}
 \end{figure}
 
-Looking at \cref{fig:1} we can see our exponential behavior. While we're correct in determining how the sign of $r$ effects whether we see growth or decay, we can also see that $r$ is proportional to how fast we grow/ decay, which is inline with our recursive function.
+Looking at \cref{fig:1} we can see our exponential behavior. While we're correct in determining how the sign of $r$ affects whether we see growth or decay, we can also see that $r$ is proportional to how fast we grow/ decay, which is inline with our recursive function.
 
-One of the main differences between \cref{fig:basic-short-term} and \cref{fig:basic-long-term} is seeing the speeding up and slowing down of specific lines. In \cref{fig:basic-short-term} it is difficult to tell that the orange and blue lines are growing exponential, while it is immediately obvious that the green line is decaying exponentially. We see a stark change in \cref{fig:basic-long-term}, where it becomes obvious that the orange and blue lines begin to accelerate growth, while the green line slows decay.
+One of the main differences between \cref{fig:basic-short-term} and \cref{fig:basic-long-term} is seeing the speeding up and slowing down of specific lines. In \cref{fig:basic-short-term} it is difficult to tell that the orange and blue lines are growing exponentially, while it is immediately obvious that the green line is decaying exponentially. We see a stark change in \cref{fig:basic-long-term}, where it becomes obvious that the orange and blue lines begin to accelerate growth, while the green line slows decay.
 
 This can be mathematically explained. If we recall \cref{eq:basic-closed}, we see that as $t$ increases the number of manipulations by $r + 1$ do as well. If we think of $(r+1)^t$ as the effective growth rate for a specific year applied to the initial population, then we know if $r + 1 > 1$, our effective growth rate will be getting larger. While if $r + 1 < 1$ our effective growth rate will be getting smaller. Thus, a larger effective growth rate will show an acceleration of change, while a smaller effective growth rate will show a slowing of change. This lines up perfectly to the observations we can make about \cref{fig:1}.
 
@@ -161,15 +161,15 @@ With a deep understanding of our incredibly simplistic model we can begin to bui
 We now begin to modify our model, assuming we are in best of times, $r = 0.01676$, we will allow hunting. We will introduce two hunting types. First, fixed percentage hunting, i.e. a percentage value $h \ge 0$ is given, as we will hunt that percentage of the population each year. Second, fixed amount hunting, i.e. a specific amount of bobcats $f \ge 0$ is given, and we hunt that amount each year. Finally, we will use the knowledge from these two models to attempt to build a model which allows for a stable population.
 
 \subsection{Percentage Model}
-The percentage model is by far the most simple modification to \cref{eq:basic-recursive-exponential}. Given an $h \ge 0$ we get, $P(n) = (1 + r)P(n-1) - hP(n-1)$ simplifying and substituting in $r=0.01676$ to get \cref{eq:hunting-percentage}.
+The percentage model is by far the most simple modification to \cref{eq:basic-recursive-exponential}. Given an $h \ge 0$ we get, $P(t) = (1 + r)P(t-1) - hP(t-1)$ simplifying and substituting in $r=0.01676$ to get \cref{eq:hunting-percentage}.
 \begin{equation}\label{eq:hunting-percentage}
-    P(n) = (r+1-h)P(n-1)
+    P(t) = (r+1-h)P(t-1)
 \end{equation}
-One may notice, that since $h$ is known beforehand $(r+1-h)$ is simply a constant, just like $(n+1)$ was in \cref{eq:basic-recursive-exponential}. We can solve the recurrence in the same manner as for the basic model, giving us the closed form \cref{eq:hunting-percentage-closed}.
+One may notice, that since $h$ is known beforehand $(r+1-h)$ is simply a constant, just like $(r+1)$ was in \cref{eq:basic-recursive-exponential}. We can solve the recurrence in the same manner as for the basic model, giving us the closed form \cref{eq:hunting-percentage-closed}.
 \begin{equation}\label{eq:hunting-percentage-closed}
-    P(n) = (r+1-h)^tP(0)
+    P(t) = (r+1-h)^tP(0)
 \end{equation}
-Since, at this state, this model and the basic model is nearly identical, we can perform the same analysis. If $r < h$, we should expect exponential decay. If $r > h$, we should expect exponential growth. In this case it is possible for $h = r$, this will leave us with a fixed-point at $P(0)$. And from the two previous statements we know this fixed-point must be unstable, as if $r < h$ or $r > h$ we will trend away from it. We also can inherit the fixed point $P(t)=0$, as it will be stable when $r < h$ and unstable when $r > h$.
+Since, in this state, this model and the basic model are nearly identical, we can perform the same analysis. If $r < h$, we should expect exponential decay. If $r > h$, we should expect exponential growth. In this case it is possible for $h = r$, this will leave us with a fixed-point at $P(0)$. And from the two previous statements we know this fixed-point must be unstable, as if $r < h$ or $r > h$ we will trend away from it. We also can inherit the fixed-point $P(t)=0$, as it will be stable when $r < h$ and unstable when $r > h$.
 
 We will now plot a variety of $h$ values, and see if our analysis lines up to the data. Again we use $P(0)=100$, and as specified above $r = 0.01676$.
 
@@ -191,14 +191,14 @@ We will now plot a variety of $h$ values, and see if our analysis lines up to th
     \label{fig:2}
 \end{figure}
 
-With a quick glance at \cref{fig:2} we notice it is very similar to \cref{fig:1}. The blue line ($h=0$) is the same on \cref{fig:1} for when $r=0.01676$, as when $h=0$ no hunting is happening. We see that every line where $h > 0$ is below this one, which makes sense. We also see that our predictions held, for the blue and orange lines $h < r$, and we find that these show exponential growth. As expected, we find that when $h=r$ (the green line), we have no change in population and stay at our fixed point. Finally, when $h > r$ (red line) we see exponential decay.
+With a quick glance at \cref{fig:2} we notice it is very similar to \cref{fig:1}. The blue line ($h=0$) is the same on \cref{fig:1} for when $r=0.01676$, as when $h=0$ no hunting is happening. We see that every line where $h > 0$ is below this one, which makes sense. We also see that our predictions held, for the blue and orange lines $h < r$, and we find that these show exponential growth. As expected, we find that when $h=r$ (the green line), we have no change in population and stay at our fixed-point. Finally, when $h > r$ (red line) we see exponential decay.
 
 The rest of the analysis on this figure is essentially the same as what we did for the basic model.
 
 \subsection{Amount Model}
 The amount model makes some more drastic changes to \cref{eq:basic-recursive-exponential}. We will have some $f \ge 0$ being the amount hunted each year, this forms the recurrence in \cref{eq:hunting-amount}.
 \begin{equation}\label{eq:hunting-amount}
-    P(n) = (r+1)P(n-1) - f
+    P(t) = (r+1)P(t-1) - f
 \end{equation}
 While \cref{eq:hunting-amount} looks similar to \cref{eq:hunting-percentage} just with our new variable outside the parenthesis, this vastly changes our closed-form.
 
@@ -221,12 +221,12 @@ Which we can then substitute this in, to get the full closed-form.
 \Cref{eq:hunting-amount-closed}, however different from previous equations, is still an exponential function. Meaning we can continue to use the same analysis tools. First we can attempt to find the points at which we change from exponential growth to decay. To do so let's solve for the change from the one year to the next.
 \begin{align*}
     P(1) &= (r + 1)P(0)-f \\
-    P'(1) &= (r + 1)P(0) - f - P(0) \\
-    P'(1) &= rP(0)+P(0)-f-P(0) \\
-    P'(1) &= rP(0) - f
+    \Delta P(1) &= (r + 1)P(0) - f - P(0) \\
+    \Delta P(1) &= rP(0)+P(0)-f-P(0) \\
+    \Delta P(1) &= rP(0) - f
 \end{align*}
 
-While this looks similar to when we have calculated this for the previous models, there is one major change. We can no longer ignore $P(0)$ when determining the sign. In fact, we must use the entire expression to determine sign. So $\sgn(P'(1)) = \sgn(rP(0)-f)$. For \cref{eq:basic-recursive-exponential} we knew our sign only relied on $r$, for \cref{eq:hunting-percentage} we knew our sign relied on $r$ and $h$. In this case we rely on three things, the initial population, the growth rate, and the hunting amount. For the previous equations our analysis could hold, no matter the initial population, now we must be very careful to take the initial population into account.
+While this looks similar to when we have calculated this for the previous models, there is one major change. We can no longer ignore $P(0)$ when determining the sign. In fact, we must use the entire expression to determine sign. So $\sgn(\Delta P(1)) = \sgn(rP(0)-f)$. For \cref{eq:basic-recursive-exponential} we knew our sign only relied on $r$, for \cref{eq:hunting-percentage} we knew our sign relied on $r$ and $h$. In this case we rely on three things, the initial population, the growth rate, and the hunting amount. For the previous equations our analysis could hold, no matter the initial population, now we must be very careful to take the initial population into account.
 
 In this scenario we can start by keeping this generic, then we can introduce our known values for $r$ and $P(0)$ to calculate the actual points where behavior will change. We expect to see exponential growth when $rP(0)>f$, we should see decay when $rP(0)<f$, and should see no growth or decay when $rP(0)=f$.
 
@@ -256,10 +256,10 @@ Looking at \cref{fig:3}, it does not look similar to \cref{fig:1,fig:2}. Similar
 
 Our expectations were met, as when $f=0,1$, i.e. $f < 1.676$, we saw a positive rate of change, and when $f=2,3$, i.e. $f > 1.676$, we saw a negative rate of change. This model is also the first model to introduce negative populations, which doesn't make much sense realistically. While this model introduced complexity, and new behaviors (negative exponential growth), we were able to apply the same techniques as we have on the previous models, and get accurate results.
 
-\subsection{Stable Model}
+\subsection{Strategic Model}
 For this section we have the goal of devising a strategy to have the population increase to around 200 bobcats, then remain roughly constant over time. We continue to use $P(0)=100$ and $r = 0.01676$. We can devise this strategy with either of our two models, or with both of them.
 
-Neither of our two models have stable fixed points, which means we can't solve for a fixed point at $P(t)=200$ and have our population rise to it. Instead, we can use what we have learned in the analysis of our methods. For our fixed percentage hunting model, \cref{eq:hunting-percentage}, we know that if $r > h$, we can expect exponential growth. We can use this fact to let us grow up to the population we want. Since $r = 0.01676$, any $h$ value less than this will allow for growth at different rates. For our fixed amount hunting model, \cref{eq:hunting-amount}, we know that when $rP(0) > f$ we will see exponential growth.
+Neither of our two models have stable fixed-points, which means we can't solve for a fixed-point at $P(t)=200$ and have our population rise to it. Instead, we can use what we have learned in the analysis of our methods. For our fixed percentage hunting model, \cref{eq:hunting-percentage}, we know that if $r > h$, we can expect exponential growth. We can use this fact to let us grow up to the population we want. Since $r = 0.01676$, any $h$ value less than this will allow for growth at different rates. For our fixed amount hunting model, \cref{eq:hunting-amount}, we know that when $rP(0) > f$ we will see exponential growth.
 
 \begin{figure}[h]
     \centering
@@ -287,13 +287,13 @@ We can find when our population will reach 200 by using the closed-form \cref{eq
     2 &= (1.01676-h)^t \\
     \log_{1.01676-h}(2) &= t
 \end{align*}
-The form above will give us a decimal year result, which we know will not work. If we use less than our calculated population won't quite reach 200, so instead we will use the ceiling of this result. \Cref{eq:hunting-strategy-time} gives us the year we will have hit 200 population, when $P(0) = 100$ and $r = 0.01676$, for any $h$. Using this, we can find that if $h=0.01$, for example, $P(t) = 200$ once $t = 103$.
+The form above will give us a decimal year result, which we know will not work. If we use a time less than our calculated, the population won't quite reach 200, so instead we will use the ceiling of this result. \Cref{eq:hunting-strategy-time} gives us the year we will have hit 200 population, when $P(0) = 100$ and $r = 0.01676$, for any $h$. Using this, we can find that if $h=0.01$, for example, $P(t) = 200$ once $t = 103$.
 
 \begin{equation}\label{eq:hunting-strategy-time}
     \tau(h) = \lceil\log_{1.01676-h}(2)\rceil
 \end{equation}
 
-Once our population has hit $P(t)=200$, we can adjust our model to allow for population stability. While we could continue to use \cref{eq:hunting-percentage}, its stability happens when $h=r$, i.e. the model becomes our basic model \cref{eq:basic-recursive-exponential}. Instead, we will use our fixed amount model to maintain stability. With our analysis of \cref{eq:hunting-amount} we found that it will be stable when $P(0)r = h$. In this case our model will begin when the population has hit 200, so $200r=h$. And we know that $r = 0.01676$ giving us a stable hunting amount of $3.352$.
+Once our population has hit $P(t)=200$, we can adjust our model to allow for population stability. While we could continue to use \cref{eq:hunting-percentage}, its stability happens when $h=r$, i.e. the model becomes our basic model \cref{eq:basic-recursive-exponential}. Instead, we will use our fixed amount model to maintain stability. With our analysis of \cref{eq:hunting-amount} we found that it will be stable when $P(0)r = f$. In this case our model will begin when the population has hit 200, so $200r=f$. And we know that $r = 0.01676$ giving us a stable hunting amount of $3.352$.
 
 The issue is that this hunting amount does not make much sense in the real world, as hunting 0.352 of a bobcat would have to be done. Instead, we can alternate between a hunting amount of $3$ and $4$. We can do this depending on the previous year's population. If $P(t-1) > 200$, we use $4$, which causes a negative growth rate. If $P(t-1) \le 200$, we use $3$, which causes a positive growth rate. This will allow our population to remain close to $200$ once reaching it.
 
@@ -302,8 +302,8 @@ We can create a formal piece-wise function of this model combining \cref{eq:hunt
 P(t) =
     \begin{cases}
         (r+1-h)P(t-1)  & \text{if } t \le \tau(h) \\
-        (r+1)P(t-1) + 3& \text{if } t > \tau(h) \text{ and } P(t-1) \le 200 \\
-        (r+1)P(t-1) + 4& \text{if } t > \tau(h) \text{ and } P(t-1) > 200 \\
+        (r+1)P(t-1) - 3& \text{if } t > \tau(h) \text{ and } P(t-1) \le 200 \\
+        (r+1)P(t-1) - 4& \text{if } t > \tau(h) \text{ and } P(t-1) > 200 \\
     \end{cases}
 \end{equation}
 
@@ -326,5 +326,125 @@ P(t) =
 \end{figure}
 
 In \cref{fig:5} we can see how our strategic model works in the short and long term. \Cref{fig:hunting-strategy-model-long-term} shows how effective it is, as even after 250 years, no matter what $h$ is used for initial growth, we remain at a population of 200. As expected, the value of $h$ only changes how quickly we reach 200. We can say our model is successful in reaching and maintaining a stable population of 200.
+
+\section{External Introduction}
+\subsection{Fixed Amount and Percentage Models}
+Under poor conditions ($r = -0.045$), some group may want to have plans to introduce bobcats raised in captivity into the population. This can be done similar to how our hunting works, where the number of bobcats added is a percentage of the current population, or the number added is a fixed amount. We can see more similarities with the model equations, where \cref{eq:intro-percentage} is similar to \cref{eq:hunting-percentage}, and \cref{eq:intro-amount} is similar to \cref{eq:intro-amount}, both simply swap the sign of $h$ and $f$.
+
+\begin{equation} \label{eq:intro-percentage}
+    P(t)=(r+h+1)P(t-1)
+\end{equation}
+\begin{equation} \label{eq:intro-amount}
+    P(t)=(r+1)P(t-1)+f
+\end{equation}
+
+Since these hold the same form as the hunting models, we don't need to find their closed form, as those will also be the same, just with the sign of $h$ and $f$ swapped. It is important to note that $h \ge 0$ and $f \ge 0$ is assumed here as well. We can perform nearly identical analysis for each of these models. First let's find how behavior changes for \cref{eq:intro-percentage}, we do this again by finding the rate of change.
+\begin{align*}
+    P(t) &= (r+h+1)P(t-1) \\
+    \Delta P(t) &= (r+h+1)P(t-1) - P(t-1) \\
+    \Delta P(t) &= (r+h)P(t-1)
+\end{align*}
+With this, if we assume $P(t-1) \ge 0$ since that is a realistic assumption with populations, we see that $\sgn(\Delta P(t)) = \sgn(r+h)$. So if $r+h > 0$ we should see exponential growth, and if $r+h < 0$, we should see exponential decay.
+
+For \cref{eq:intro-amount} we can do a similar process.
+\begin{align*}
+    P(t) &= (r+1)P(t-1) + f \\
+    \Delta P(t) &= (r+1)P(t-1) + f - P(t-1)\\
+    \Delta P(t) &= rP(t-1) + f
+\end{align*}
+We see that similar to \cref{eq:hunting-amount}, we rely on three things to determine the sign of the change in population, $P(t-1)$, $r$, and $f$. So we know that if $P(t-1)r + f > 0$ we will see exponential growth and $P(t-1)r + f < 0$ would expect negative exponential growth, as that is what happened in our hunting model. But, this is actually not the case. If we recall, \cref{eq:hunting-amount-closed}, our second term caused negative exponential growth since $r > 0$. Now the sign of this second term will have changed, see \cref{eq:intro-amount-closed}, and we know in this case that $r < 0$.
+\begin{equation}\label{eq:intro-amount-closed}
+    P(t) = (r+1)^tP(0)+f\frac{(r+1)^t}{r}
+\end{equation}
+So our exponential function, will have alternating decay, meaning negative growth functions no longer approach 0. If we look about at our $\Delta P(t)$, we can that $rP(t-1) + f$, when $r < 0$, will eventually reach 0. And, as we know, when the change is 0, we have a fixed-point. We can solve for this fixed-point, as we have before.
+\begin{align*}
+    P(t) &= (r+1)P(t-1) + f \\
+    f(x) &= (r+1)x + f \\
+    \bar{x} &= (r+1)\bar{x} + f\\
+    \bar{x} &= r\bar{x} + \bar{x} + f\\
+    0 &= r\bar{x} + f\\
+    \frac{-f}{r} &= \bar{x}
+\end{align*}
+Since we assume our $f \ge 0$ and $r < 0$, we know that $\frac{-f}{r}$ will be a positive number. Next, we need to ensure it is stable, we do this following the theory in \cref{sect:fixed-points}.
+\begin{align*}
+    f(x) &= (r+1)x + f \\
+    f'(x) &= r + 1
+\end{align*}
+So the fixed-point is stable when $|r + 1| < 1$, and since we know in this case $r < 0$, we know that this fixed-point will be stable in all the cases we review in this section. So when we analyze \cref{eq:intro-amount}, we should always see an attracting fixed-point at $P(t) = \frac{-f}{r}$.
+\newpage
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.95\linewidth]{./introduction/percentage_long_term.png}
+        \caption{Population using \cref{eq:intro-percentage}}
+        \label{fig:intro-percentage}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.95\linewidth]{./introduction/amount_long_term.png}
+        \caption{Population using \cref{eq:intro-amount}}
+        \label{fig:intro-amount}
+    \end{subfigure}
+    \caption{Bobcat populations using the two introduction models \cref{eq:intro-percentage,eq:intro-amount} with $P(0) = 100$ and $r = -0.045$.}
+    \label{fig:6}
+\end{figure}
+
+\Cref{fig:intro-percentage} reflects just how similar \cref{eq:intro-percentage} is to the hunting model in \cref{eq:hunting-percentage}, with this looking very similar to the graphs in \cref{fig:2}. We won't analyze this too much, as it will be repetitive analysis. \Cref{fig:intro-amount} is a perfect look at these fixed-points, if we pick any $f$ value, let's use $f = 6$, we should be able to use the previously discussed formula to find it's fixed-point. Using $\frac{-f}{r}$, we get $\frac{-6}{-0.045} \approx 133.33$, which is where we see our the red line leveling off. Our assumptions about positive and negative growth do hold, when $P(t-1)r + f < 0$, i.e. when $100(0.045) = 4.5 > f$, we see negative growth, and when $4.5 < f$, we see positive growth.
+
+\subsection{Strategic Model}
+Similar to hunting models, we will attempt to create a strategic model to reach target populations. Our first target population is 200 bobcats. Since we know we can create a stable fixed-point, we can solve for an $f$ value which reaches this target. $200 = \frac{-f}{-0.045}$, $f = (0.045)200 = 9$.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.95\linewidth]{./introduction_strategy/200_short_term.png}
+        \caption{Bobcat Population over 60 Years}
+        \label{fig:intro-strategy-200-short-term}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.95\linewidth]{./introduction_strategy/200_long_term.png}
+        \caption{Bobcat Population over 150 Years}
+        \label{fig:intro-strategy-200-long-term}
+    \end{subfigure}
+    \caption{Bobcat populations using the fixed introduction model \cref{eq:intro-amount} with $P(0) = 100$, $r = -0.045$, $f = 9$.}
+    \label{fig:7}
+\end{figure}
+
+With this, we know that if $f = 9$ our population will rise from 100 and approach 200. As we can see in \cref{fig:7}, this is exactly what happens. While in the short term, \cref{fig:intro-strategy-200-short-term}, we don't get there, eventually we begin to stay constant at nearly 200.
+
+For our next target, we can do the same thing, $50 = \frac{-f}{-0.045}$, $f = (0.045)50 = 2.25$. This is a small problem, as it is hard to recommend to an organization to introduce a quarter of a bobcat. We can instead vary how many bobcats we introduce each year. If we introduce 2 for the first three years, then 3 on the fourth year, our average introduction will be the 2.25 we are looking for. We can use modular arithmetic to achieve this distribution of $f$ values.
+\begin{equation}\label{eq:intro-strategy-50}
+    P(t) = \begin{cases}
+        (r + 1)P(t-1) + 3 & \text{if $t \ ($mod $4)  = 0$}\\
+        (r + 1)P(t-1) + 2 & \text{if $t \ ($mod $4) \ne 0$}
+    \end{cases}
+\end{equation}
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.95\linewidth]{./introduction_strategy/50_short_term.png}
+        \caption{Bobcat Population over 60 Years}
+        \label{fig:intro-strategy-50-short-term}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.95\linewidth]{./introduction_strategy/50_long_term.png}
+        \caption{Bobcat Population over 150 Years}
+        \label{fig:intro-strategy-50-long-term}
+    \end{subfigure}
+    \caption{Bobcat populations using our alternative $f$ value model \cref{eq:intro-strategy-50} with $P(0) = 100$, $r = -0.045$.}
+    \label{fig:8}
+\end{figure}
+
+While \cref{fig:8} does not look as nice as \cref{fig:7}, due to the jittering logically caused by the alternating $f$ value, it does appear to be successful. We can see that \cref{fig:intro-strategy-50-long-term} rests around our target population. Thus, \cref{eq:intro-strategy-50} is a successful model for this target population.
+
+\section{Conclusion}
+Throughout this paper we discussed multiple mathematical models which can be used to model bobcat populations. We limited these models to being exponential. This created limitations, as our models only ever had one growth rate, whereas in real life the growth rate may change from year to year. A clear next step would be to develop a model that incorporates a variable growth rate, or models which can include hunting. Regardless of this, we were able to analyze models, even those which seemed identical like \cref{eq:hunting-amount,eq:intro-amount}, and find differences between them. We covered basic exponential behavior, identifying and classifying fixed-points, and creating models for specific situations. Ultimately, these foundational models provide a crucial first step for building more complex simulations and models.
 
 \end{document}
