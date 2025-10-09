@@ -136,13 +136,9 @@ There are three growth rates based on environmental conditions, $1.676\%$ in the
         \caption{Bobcat Population over 70 Years}
         \label{fig:basic-long-term}
     \end{subfigure}
-    \caption{Bobcat populations in the short (30 year) and long (70 year) term. Using \cref{eq:basic-recursive-exponential} with $P(0) = 100$, and three different growth rates, $r$, being $1.676\%$, $0.549\%$, and $-4.5\%$.\textsuperscript{[\protect\ref{fn:basic-graphs}][\protect\ref{fn:basic-code}]}}
+    \caption{Bobcat populations in the short (30 year) and long (70 year) term. Using \cref{eq:basic-recursive-exponential} with $P(0) = 100$, and three different growth rates, $r$, being $1.676\%$, $0.549\%$, and $-4.5\%$.}
     \label{fig:1}
 \end{figure}
-
-\footnotetext[1]{\label{fn:basic-graphs}\href{https://github.com/JacksonBrienen/CWU-Math475-Mathematical-Modeling/tree/project1/basic}{github.com/JacksonBrienen -- Graphs}}
-
-\footnotetext[2]{\label{fn:basic-code}\href{https://github.com/JacksonBrienen/CWU-Math475-Mathematical-Modeling/blob/project1/q1.py}{github.com/JacksonBrienen -- Code for Graphs}}
 
 Looking at \cref{fig:1} we can see our exponential behavior. While we're correct in determining how the sign of $r$ effects whether we see growth or decay, we can also see that $r$ is proportional to how fast we grow/ decay, which is inline with our recursive function.
 
@@ -169,7 +165,7 @@ The percentage model is by far the most simple modification to \cref{eq:basic-re
 \begin{equation}\label{eq:hunting-percentage}
     P(n) = (r+1-h)P(n-1)
 \end{equation}
-One may notice, that since $h$ is known beforehand $(r+1-h)$ is simply a constant, just like $(n+1)$ was in \cref{eq:basic-recursive-exponential}. We can solve the recurrence in the same manner as for the basic model, giving us the closed form \ref{eq:hunting-percentage-closed}.
+One may notice, that since $h$ is known beforehand $(r+1-h)$ is simply a constant, just like $(n+1)$ was in \cref{eq:basic-recursive-exponential}. We can solve the recurrence in the same manner as for the basic model, giving us the closed form \cref{eq:hunting-percentage-closed}.
 \begin{equation}\label{eq:hunting-percentage-closed}
     P(n) = (r+1-h)^tP(0)
 \end{equation}
@@ -191,13 +187,9 @@ We will now plot a variety of $h$ values, and see if our analysis lines up to th
         \caption{Bobcat Population over 70 Years}
         \label{fig:hunting-percentage-long-term}
     \end{subfigure}
-    \caption{Bobcat populations using \cref{eq:hunting-percentage} with $P(0) = 100$, $r = 0.01676$, and four different hunting rates, $h$, being $0\%$, $1.0\%$, $1.676\%$ i.e. $r$, and $2.0\%$.\textsuperscript{[\protect\ref{fn:hunting-percentage-graphs}][\protect\ref{fn:hunting-percentage-code}]}}
+    \caption{Bobcat populations using \cref{eq:hunting-percentage} with $P(0) = 100$, $r = 0.01676$, and four different hunting rates, $h$, being $0\%$, $1.0\%$, $1.676\%$ i.e. $r$, and $2.0\%$.}
     \label{fig:2}
 \end{figure}
-
-\footnotetext[1]{\label{fn:hunting-percentage-graphs}\href{https://github.com/JacksonBrienen/CWU-Math475-Mathematical-Modeling/tree/project1/hunting}{github.com/JacksonBrienen -- Graphs}}
-
-\footnotetext[2]{\label{fn:hunting-percentage-code}\href{https://github.com/JacksonBrienen/CWU-Math475-Mathematical-Modeling/blob/project1/q2-percentage.py}{github.com/JacksonBrienen -- Code for Graphs}}
 
 With a quick glance at \cref{fig:2} we notice it is very similar to \cref{fig:1}. The blue line ($h=0$) is the same on \cref{fig:1} for when $r=0.01676$, as when $h=0$ no hunting is happening. We see that every line where $h > 0$ is below this one, which makes sense. We also see that our predictions held, for the blue and orange lines $h < r$, and we find that these show exponential growth. As expected, we find that when $h=r$ (the green line), we have no change in population and stay at our fixed point. Finally, when $h > r$ (red line) we see exponential decay.
 
@@ -208,7 +200,8 @@ The amount model makes some more drastic changes to \cref{eq:basic-recursive-exp
 \begin{equation}\label{eq:hunting-amount}
     P(n) = (r+1)P(n-1) - f
 \end{equation}
-While \eqref{eq:hunting-amount} looks similar to \cref{eq:hunting-percentage} just with our new variable outside the parenthesis, this vastly changes our closed-form.
+While \cref{eq:hunting-amount} looks similar to \cref{eq:hunting-percentage} just with our new variable outside the parenthesis, this vastly changes our closed-form.
+
 \begin{align*}
     P(t) &= (r+1)P(t-1) - f & P(t-1) = (r+1)P(t-2) - f \\
     P(t) &= (r+1)((r+1)P(t-2) - f) - f & P(t-2) = (r+1)P(t-3) - f \\
@@ -255,16 +248,83 @@ Now, let's analyze our inflection points with the known variables $P(0) = 100$ a
         \caption{Bobcat Population over 70 Years}
         \label{fig:hunting-amount-long-term}
     \end{subfigure}
-    \caption{Bobcat populations using \cref{eq:hunting-amount} with $P(0) = 100$, $r = 0.01676$, and four different fixed hunting amounts, $f$, being 0, 1, 2, and 3.\textsuperscript{[\protect\ref{fn:hunting-amount-graphs}][\protect\ref{fn:hunting-amount-code}]}}
+    \caption{Bobcat populations using \cref{eq:hunting-amount} with $P(0) = 100$, $r = 0.01676$, and four different fixed hunting amounts, $f$, being 0, 1, 2, and 3.}
     \label{fig:3}
 \end{figure}
-
-\footnotetext[1]{\label{fn:hunting-amount-graphs}\href{https://github.com/JacksonBrienen/CWU-Math475-Mathematical-Modeling/tree/project1/hunting}{github.com/JacksonBrienen -- Graphs}}
-
-\footnotetext[2]{\label{fn:hunting-amount-code}\href{https://github.com/JacksonBrienen/CWU-Math475-Mathematical-Modeling/blob/project1/q2-amount.py}{github.com/JacksonBrienen -- Code for Graphs}}
 
 Looking at \cref{fig:3}, it does not look similar to \cref{fig:1,fig:2}. Similar to those we can see how in \cref{fig:hunting-amount-short-term} it is difficult to see the exponential growth or decay, but then looking at \cref{fig:hunting-amount-long-term} we can see the functions speed up. The main difference, as talked about previously, there is no exponential decay, instead we see both positive and negative exponential growth.
 
 Our expectations were met, as when $f=0,1$, i.e. $f < 1.676$, we saw a positive rate of change, and when $f=2,3$, i.e. $f > 1.676$, we saw a negative rate of change. This model is also the first model to introduce negative populations, which doesn't make much sense realistically. While this model introduced complexity, and new behaviors (negative exponential growth), we were able to apply the same techniques as we have on the previous models, and get accurate results.
+
+\subsection{Stable Model}
+For this section we have the goal of devising a strategy to have the population increase to around 200 bobcats, then remain roughly constant over time. We continue to use $P(0)=100$ and $r = 0.01676$. We can devise this strategy with either of our two models, or with both of them.
+
+Neither of our two models have stable fixed points, which means we can't solve for a fixed point at $P(t)=200$ and have our population rise to it. Instead, we can use what we have learned in the analysis of our methods. For our fixed percentage hunting model, \cref{eq:hunting-percentage}, we know that if $r > h$, we can expect exponential growth. We can use this fact to let us grow up to the population we want. Since $r = 0.01676$, any $h$ value less than this will allow for growth at different rates. For our fixed amount hunting model, \cref{eq:hunting-amount}, we know that when $rP(0) > f$ we will see exponential growth.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.95\linewidth]{./hunting_strategy/percentage_growth.png}
+        \caption{Population using \cref{eq:hunting-percentage}}
+        \label{fig:hunting-strategy-percentage-growth}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.95\linewidth]{./hunting_strategy/amount_growth.png}
+        \caption{Population using \cref{eq:hunting-amount}}
+        \label{fig:hunting-strategy-amount-growth}
+    \end{subfigure}
+    \caption{Bobcat populations using \cref{eq:hunting-percentage} and \cref{eq:hunting-amount} with $P(0) = 100$ and $r = 0.01676$. Highlighting how each grows to $P(t)=200$ given different parameters.}
+    \label{fig:4}
+\end{figure}
+
+In \cref{fig:4} we can see how each of these models grows to 200. Looking at \cref{fig:hunting-strategy-amount-growth}, we see only two values of $f$ work, as $rP(0) > f$ with our $r$ and $P(0)$ is $1.676 > f$. So only 0 and 1 will work for a real world hunting amount, everything higher will cause the population to decrease. \Cref{fig:hunting-strategy-percentage-growth} shows that there are many more values that work. Since we simply need $h < 0.01676$, any decimal value between $0$ and $0.01676$ works. In both \cref{fig:hunting-strategy-percentage-growth,fig:hunting-strategy-amount-growth} the blue line represents the same function, modeled by our basic model in  \cref{eq:basic-recursive-exponential}, as no hunting is happening. We can see a definite advantage to using \cref{eq:hunting-percentage} initially, as it will give us many more ways to reach $P(t)=200$.
+
+We can find when our population will reach 200 by using the closed-form \cref{eq:hunting-percentage-closed}. Then solving for $t$. For the sake of numerical simplicity, since we know the constants values, we will use them.
+\begin{align*}
+    200 &= 100(1.01676-h)^t \\
+    2 &= (1.01676-h)^t \\
+    \log_{1.01676-h}(2) &= t
+\end{align*}
+The form above will give us a decimal year result, which we know will not work. If we use less than our calculated population won't quite reach 200, so instead we will use the ceiling of this result. \Cref{eq:hunting-strategy-time} gives us the year we will have hit 200 population, when $P(0) = 100$ and $r = 0.01676$, for any $h$. Using this, we can find that if $h=0.01$, for example, $P(t) = 200$ once $t = 103$.
+
+\begin{equation}\label{eq:hunting-strategy-time}
+    \tau(h) = \lceil\log_{1.01676-h}(2)\rceil
+\end{equation}
+
+Once our population has hit $P(t)=200$, we can adjust our model to allow for population stability. While we could continue to use \cref{eq:hunting-percentage}, its stability happens when $h=r$, i.e. the model becomes our basic model \cref{eq:basic-recursive-exponential}. Instead, we will use our fixed amount model to maintain stability. With our analysis of \cref{eq:hunting-amount} we found that it will be stable when $P(0)r = h$. In this case our model will begin when the population has hit 200, so $200r=h$. And we know that $r = 0.01676$ giving us a stable hunting amount of $3.352$.
+
+The issue is that this hunting amount does not make much sense in the real world, as hunting 0.352 of a bobcat would have to be done. Instead, we can alternate between a hunting amount of $3$ and $4$. We can do this depending on the previous year's population. If $P(t-1) > 200$, we use $4$, which causes a negative growth rate. If $P(t-1) \le 200$, we use $3$, which causes a positive growth rate. This will allow our population to remain close to $200$ once reaching it.
+
+We can create a formal piece-wise function of this model combining \cref{eq:hunting-percentage,eq:hunting-amount,eq:hunting-strategy-time} to get \cref{eq:hunting-strategy-model}.
+\begin{equation}\label{eq:hunting-strategy-model}
+P(t) =
+    \begin{cases}
+        (r+1-h)P(t-1)  & \text{if } t \le \tau(h) \\
+        (r+1)P(t-1) + 3& \text{if } t > \tau(h) \text{ and } P(t-1) \le 200 \\
+        (r+1)P(t-1) + 4& \text{if } t > \tau(h) \text{ and } P(t-1) > 200 \\
+    \end{cases}
+\end{equation}
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.95\linewidth]{./hunting_strategy/strategic_model_short_term.png}
+        \caption{Bobcat Population over 110 Years}
+        \label{fig:hunting-strategy-model-short-term}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.95\linewidth]{./hunting_strategy/strategic_model_long_term.png}
+        \caption{Bobcat Population over 250 Years}
+        \label{fig:hunting-strategy-model-long-term}
+    \end{subfigure}
+    \caption{Bobcat populations using the strategic model \cref{eq:hunting-strategy-model} with $P(0) = 100$ and $r = 0.01676$.}
+    \label{fig:5}
+\end{figure}
+
+In \cref{fig:5} we can see how our strategic model works in the short and long term. \Cref{fig:hunting-strategy-model-long-term} shows how effective it is, as even after 250 years, no matter what $h$ is used for initial growth, we remain at a population of 200. As expected, the value of $h$ only changes how quickly we reach 200. We can say our model is successful in reaching and maintaining a stable population of 200.
 
 \end{document}
