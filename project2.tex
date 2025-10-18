@@ -101,6 +101,13 @@ One major change we see is that the median trends below the standard exponential
 
 \section{Environmental Stochasticity}
 
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=.5\linewidth]{plots/environmental_classes.png}
+    \caption{Possible environmental results for all $\sigma(t)$ values in \cref{eq:environmental-piecewise}. Using $b = 0.4$ and $s = 0.68$, and $b = 0.1$, $s = 0.38$ during a catastrophe.}
+    \label{fig:environmental-classes}
+\end{figure}
+
 In the last section we discussed a model which mimicked variability within a bobcat population's birth and survival rates. This change is usually looked at as internal and varies regularly without one finite cause. In this section we look at the external, or environmental, impact on birth and survival rates.
 
 In order to demonstrate this we introduce a catastrophe, which happens on average once every twelve years. One difference from demographic stochasticity is these `events' will impact birth and survival rates in the same manner. In our example, a catastrophe will reduce both birth and survival rates by 30\%, while our demographic stochasticity model could reduce the survival rates but increase the birth rates.
@@ -120,20 +127,7 @@ When our catastrophe happens, we know that our basic model simply has a \\$(b-0.
     P(t) = (b+s-0.6)^{\sigma(t)}(b+s)^{t-\sigma(t)}P(0)
 \end{equation}
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=.5\linewidth]{plots/environmental_classes.png}
-    \caption{Possible environmental results for all $\sigma(t)$ values in \cref{eq:environmental-piecewise}. Using $b = 0.4$ and $s = 0.68$, and $b = 0.1$, $s = 0.38$ during a catastrophe.}
-    \label{fig:environmental-classes}
-\end{figure}
-
 Notice that in \cref{eq:environmental-exponential} $P(t)$ changes based off $\sigma(t)$, i.e. the total number of catastrophes, and not when those catastrophes happen. This means that for $P(20)$, there can be 21 possible functions, where $\sigma(t) = 0 \lor 1 \lor \ldots \lor 20$. We see this behavior in \cref{fig:environmental-classes}. We can also see that if we have either $0$ or $1$ catastrophe (the green lines) we will end up growing larger than the initial population. If $1 < \sigma(t) < 7$ (the blue lines), our population will not fall below $1$, i.e. the population will not die off. For any $7 \le \sigma(t)$ (the red lines), our population will die off. This gives us a general idea of what will happen in a maximum and minimum situation, the uppermost green line being our maximum, when no catastrophes happen, the lowest red line being the worst case where 20 catastrophes happen, which will be similar results for if we have 7 or more catastrophes.
-
-In average cases we can break down the likelihood of these maximum and minimum situations. Since we know that $\tau(t)$ has exactly $\frac{1}{12}$ odds of having a catastrophe, we can calculate these odds. The likelihood of no catastrophe happening in a single year is $1 - \frac{1}{12}$ or $\frac{11}{12}$, thus over twenty years we have a $\left(\frac{11}{12}\right)^{20}$ chance of this happening, or roughly $17.55\%$ chance of no catastrophe occurring. To find when a specific number of events occur we need to use a combinatorial function, known as the binomial coefficient, to find all possible ways a catastrophe could occur over 20 years. This is denoted $\binom{20}{c}$, where $c$ is the number of catastrophes. Then we multiply by the odds of the number of catastrophes in a row, $\frac{1}{12}^c \cdot \frac{11}{12}^{20-c}$. We see a generalized form of this in \cref{eq:environmental-catastrophe-rate}, where $\lambda$ is the odds of the amount of catastrophes $c$ happening at a catastrophe rate of $c_r$. If we sum this result over the amount we want, i.e. 7 to 20, $\sum_{c=7}^{20}\left(\binom{20}{c} \cdot \frac{1}{12}^c \frac{11}{12}^{20-c}\right)$, we can get the exact percentage of being in the case where our population dies off. Computing this gives that there is roughly $0.0815\%$ chance of this occurring, which is dwarfed by the chances of no catastrophes happening. Doing this same computation (or by process of elimination) we find a $82.37\%$ of us having 1 to 6 catastrophes, or a $99.92\%$ chance of having 0 to 6 catastrophes. Thus, percentage wise it is significantly more likely for our population to not die off than to die off.
-
-\begin{equation} \label{eq:environmental-catastrophe-rate}
-    \lambda(c, c_r) = \binom{20}{c} c_r^c (1-c_r)^{20-c}
-\end{equation}
 
 \begin{figure}[h!]
     \centering
@@ -141,6 +135,12 @@ In average cases we can break down the likelihood of these maximum and minimum s
     \caption{50 trials of environment model with $\frac{1}{12}$ odds of a catastrophe. Using $b = 0.4$ and $s = 0.68$, and $b = 0.1$, $s = 0.38$ during a catastrophe.}
     \label{fig:environmental}
 \end{figure}
+
+In average cases we can break down the likelihood of these maximum and minimum situations. Since we know that $\tau(t)$ has exactly $\frac{1}{12}$ odds of having a catastrophe, we can calculate these odds. The likelihood of no catastrophe happening in a single year is $1 - \frac{1}{12}$ or $\frac{11}{12}$, thus over twenty years we have a $\left(\frac{11}{12}\right)^{20}$ chance of this happening, or roughly $17.55\%$ chance of no catastrophe occurring. To find when a specific number of events occur we need to use a combinatorial function, known as the binomial coefficient, to find all possible ways a catastrophe could occur over 20 years. This is denoted $\binom{20}{c}$, where $c$ is the number of catastrophes. Then we multiply by the odds of the number of catastrophes in a row, $\frac{1}{12}^c \cdot \frac{11}{12}^{20-c}$. We see a generalized form of this in \cref{eq:environmental-catastrophe-rate}, where $\lambda$ is the odds of the amount of catastrophes $c$ happening at a catastrophe rate of $c_r$. If we sum this result over the amount we want, i.e. 7 to 20, $\sum_{c=7}^{20}\left(\binom{20}{c} \cdot \frac{1}{12}^c \frac{11}{12}^{20-c}\right)$, we can get the exact percentage of being in the case where our population dies off. Computing this gives that there is roughly $0.0815\%$ chance of this occurring, which is dwarfed by the chances of no catastrophes happening. Doing this same computation (or by process of elimination) we find a $82.37\%$ of us having 1 to 6 catastrophes, or a $99.92\%$ chance of having 0 to 6 catastrophes. Thus, percentage wise it is significantly more likely for our population to not die off than to die off.
+
+\begin{equation} \label{eq:environmental-catastrophe-rate}
+    \lambda(c, c_r) = \binom{20}{c} c_r^c (1-c_r)^{20-c}
+\end{equation}
 
 \Cref{fig:environmental} shows us what happens in an average case (the orange line), along with the expected minimums and maximums. Using \cref{eq:environmental-catastrophe-rate} summed for 1 to 2 catastrophes, we find that we will be in this range $59.46\%$ of the time, and $31.9\%$ we will have exactly 1 catastrophe while $27.55\%$ of the time we will have exactly 2, thus the average is between these and tends to be closer to 1 catastrophe.
 
