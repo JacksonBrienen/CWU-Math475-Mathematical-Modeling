@@ -1,0 +1,7 @@
+venv/
+project2.aux
+project2.fdb_latexmk
+project2.fls
+project2.log
+project2.synctex.gz
+project2.out
