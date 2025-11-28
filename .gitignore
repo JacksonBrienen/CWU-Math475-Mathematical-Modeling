@@ -1,0 +1,8 @@
+venv/
+__pycache__/
+project4.aux
+project4.fdb_latexmk
+project4.fls
+project4.log
+project4.synctex.gz
+project4.out
